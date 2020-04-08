@@ -1,6 +1,9 @@
 <template>
     <div id="app" data-app="true">
         <v-data-table
+            v-model="selected"
+            show-select
+            item-key="title"
             :headers="headers"
             :items="todos"
             :items-per-page="10"
@@ -76,6 +79,7 @@ export default {
     name: 'App',
     data: () => ({
         dialog: false,
+        selected: [],
         headers: [
             {
                 text: 'Title',
