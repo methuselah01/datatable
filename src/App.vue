@@ -4,6 +4,7 @@
             v-model="selected"
             show-select
             item-key="title"
+            :search="search"
             :headers="headers"
             :items="todos"
             :items-per-page="10"
@@ -18,12 +19,18 @@
                         inset
                         vertical
                     ></v-divider>
+                    <v-text-field
+                        v-model="search"
+                        append-icon="mdi-magnify"
+                        label="Search"
+                        single-line
+                        hide-details
+                    ></v-text-field>
                     <v-spacer></v-spacer>
                     <v-dialog v-model="dialog" max-width="500px">
                         <template v-slot:activator="{ on }">
                             <v-btn color="primary" dark class="mb-2" v-on="on">New Todo</v-btn>
                         </template>
-
                         <v-card>
                             <v-card-title>
                                 <span class="headline">{{ formTitle }}</span>
@@ -80,6 +87,7 @@ export default {
     data: () => ({
         dialog: false,
         selected: [],
+        search: '',
         headers: [
             {
                 text: 'Title',
@@ -127,19 +135,37 @@ export default {
                     title: 'Task 1',
                     description: 'Description 1',
                     deadline: '10-10-2020',
-                    status: 1
+                    status: 'Open'
                 },
                 {
                     title: 'Task 2',
                     description: 'Description 2',
-                    deadline: '10-10-2020',
-                    status: 2
+                    deadline: '20-05-2020',
+                    status: 'In progress'
                 },
                 {
                     title: 'Task 3',
                     description: 'Description 3',
+                    deadline: '06-06-2020',
+                    status: 'Closed'
+                },
+                {
+                    title: 'Task 4',
+                    description: 'Description 4',
                     deadline: '10-10-2020',
-                    status: 3
+                    status: 'Closed'
+                },
+                {
+                    title: 'Task 5',
+                    description: 'Description 5',
+                    deadline: '20-05-2020',
+                    status: 'In progress'
+                },
+                {
+                    title: 'Task 6',
+                    description: 'Description 6',
+                    deadline: '06-06-2020',
+                    status: 'Open'
                 },
             ]
         },
