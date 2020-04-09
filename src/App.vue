@@ -2,12 +2,15 @@
     <div id="app" data-app="true">
         <v-data-table
             v-model="selected"
-            show-select
-            item-key="title"
             :search="search"
             :headers="headers"
             :items="todos"
             :items-per-page="10"
+            :single-expand="singleExpand"
+            :expanded.sync="expanded"
+            item-key="title"
+            show-select
+            show-expand
             sort-by="title"
             class="elevation-1"
         >
@@ -27,6 +30,7 @@
                         hide-details
                     ></v-text-field>
                     <v-spacer></v-spacer>
+                    
                     <v-dialog v-model="dialog" max-width="500px">
                         <template v-slot:activator="{ on }">
                             <v-btn color="primary" dark class="mb-2" v-on="on">New Todo</v-btn>
@@ -77,6 +81,10 @@
             <template v-slot:no-data>
                 <v-btn color="primary" @click="initialize">Reset</v-btn>
             </template>
+
+            <template v-slot:expanded-item="{ headers, item }">
+                <td :colspan="headers.length">More info about {{ item.title }}</td>
+            </template>
         </v-data-table>
     </div>
 </template>
@@ -88,6 +96,8 @@ export default {
         dialog: false,
         selected: [],
         search: '',
+        expanded: [],
+        singleExpand: false,
         headers: [
             {
                 text: 'Title',
@@ -99,6 +109,7 @@ export default {
             { text: 'Deadline', value: 'deadline' },
             { text: 'Status', value: 'status' },
             { text: 'Actions', value: 'actions', sortable: false },
+            { text: '', value: 'data-table-expand' },
         ],
         todos: [],
         editedIndex: -1,
