@@ -8,6 +8,8 @@ import vuetify from '@/plugins/vuetify'
 
 Vue.config.productionTip = false
 
+Vue.use(require('vue-faker'));
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -143,6 +143,12 @@ export default {
         initialize () {
             this.todos = [
                 {
+                    title: this.$faker().name.jobTitle(),
+                    description: this.$faker().lorem.sentence(),
+                    deadline: this.$faker().date.future(),
+                    status: 'Open'
+                },
+                {
                     title: 'Task 1',
                     description: 'Description 1',
                     deadline: '10-10-2020',
