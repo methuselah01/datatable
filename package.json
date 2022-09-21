@@ -13,7 +13,7 @@
     "vue": "^2.5.2",
     "vue-faker": "^1.0.1",
     "vue-router": "^3.0.1",
-    "vuetify": "^2.2.19"
+    "vuetify": "^2.6.10"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
